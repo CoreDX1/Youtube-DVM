@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Tube.Application.DTO.Request;
 using Tube.Application.Interfaces;
 
 namespace src.Tube.Api.Controllers
@@ -14,11 +15,11 @@ namespace src.Tube.Api.Controllers
             _app = app;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Video")]
-        public string Get()
+        public string Get([FromBody] VideoRequestDto video)
         {
-            return _app.GetVideo();
+            return _app.GetVideo(video);
         }
     }
 }
