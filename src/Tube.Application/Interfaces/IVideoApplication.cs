@@ -4,5 +4,5 @@ namespace Tube.Application.Interfaces;
 
 public interface IVideoApplication
 {
-    public string GetVideo(VideoRequestDto video);
+    public string VideoDownload(VideoRequestDto video);
 }

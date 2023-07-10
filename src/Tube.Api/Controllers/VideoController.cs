@@ -19,7 +19,7 @@ namespace src.Tube.Api.Controllers
         [Route("Video")]
         public string Get([FromBody] VideoRequestDto video)
         {
-            return _app.GetVideo(video);
+            return _app.VideoDownload(video);
         }
     }
 }
