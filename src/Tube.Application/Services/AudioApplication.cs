@@ -7,8 +7,7 @@ public class AudioApplication : IAudioApplication
 {
     public string AudioDownload(VideoRequestDto url)
     {
-        var donwload = new YtProcessorApplication();
-        var salida = donwload.ProcessYt(url).DownloadAudio();
-        return salida ? "Downloaded" : "Error";
+        var audio = new FormateProcessApplication(url.URL).DownloadAudio();
+        return audio ? "Downloaded" : "Error";
     }
 }

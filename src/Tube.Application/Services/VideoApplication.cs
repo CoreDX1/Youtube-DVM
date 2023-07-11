@@ -8,10 +8,9 @@ public class VideoApplication : IVideoApplication
 {
     public VideoApplication() { }
 
-    public string VideoDownload(VideoRequestDto url)
+    public string VideoDownload(VideoRequestDto video)
     {
-        var donwload = new YtProcessorApplication();
-        var salida = donwload.ProcessYt(url).DownloadVideo();
-        return salida ? "Downloaded" : "Error";
+        var Video = new FormateProcessApplication(video.URL).DownloadVideo();
+        return Video ? "Downloaded" : "Error";
     }
 }

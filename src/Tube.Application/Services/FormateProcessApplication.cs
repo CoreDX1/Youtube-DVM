@@ -1,41 +1,43 @@
 using Tube.Utilities.Static;
 using System.Diagnostics;
 
-namespace src.Tube.Application.Services
+namespace Tube.Application.Services
 {
     public class FormateProcessApplication
     {
-        public string Video;
-        public string Audio;
+        public string videoArgument;
+        public string audioArgument;
 
         public FormateProcessApplication(string url)
         {
-            Video = @$"-P {Const.pathFolder} {url}";
-            Audio = @$"-P {Const.pathFolder} {url} -f ba[ext=m4a]";
+            videoArgument = @$"-P {Const.pathFolder} {url}";
+            audioArgument = @$"-P {Const.pathFolder} {url} -f ba[ext=m4a]";
         }
 
-        public bool DownloadVideo() => ExecuteProcess(Video);
+        public bool DownloadVideo() => ExecuteProcess(videoArgument);
 
-        public bool DownloadAudio() => ExecuteProcess(Audio);
+        public bool DownloadAudio() => ExecuteProcess(audioArgument);
 
         private bool ExecuteProcess(string arguments)
         {
             try
             {
-                using (Process processYt = new Process())
+                using var processYt = new Process()
                 {
-                    processYt.StartInfo.FileName = Const.pathYt;
-                    processYt.StartInfo.Arguments = arguments;
-                    processYt.StartInfo.UseShellExecute = false;
-                    processYt.StartInfo.RedirectStandardOutput = true;
-                    processYt.StartInfo.CreateNoWindow = true;
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = Const.pathYt,
+                        Arguments = arguments,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true
+                    }
+                };
 
-                    processYt.Start();
-
-                    string output = processYt.StandardOutput.ReadToEnd();
-                    processYt.WaitForExit();
-                    return true;
-                }
+                processYt.Start();
+                processYt.StandardOutput.ReadToEnd();
+                processYt.WaitForExit();
+                return true;
             }
             catch (Exception ex)
             {
