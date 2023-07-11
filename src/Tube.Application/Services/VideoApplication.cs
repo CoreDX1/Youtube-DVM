@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Tube.Application.DTO.Request;
 using Tube.Application.Interfaces;
 
@@ -6,11 +5,19 @@ namespace Tube.Application.Services;
 
 public class VideoApplication : IVideoApplication
 {
-    public VideoApplication() { }
+    private readonly IVideoDownloaderApplication _app;
 
-    public string VideoDownload(VideoRequestDto video)
+    public VideoApplication(IVideoDownloaderApplication app)
     {
-        var Video = new FormateProcessApplication(video.URL).DownloadVideo();
-        return Video ? "Downloaded" : "Error";
+        _app = app;
+    }
+
+    public async Task<string> Video(VideoRequestDto video)
+    {
+        var result = await _app.VideoDownload(video.URL);
+        if (result is null)
+            return "Error";
+
+        return "Downloaded";
     }
 }

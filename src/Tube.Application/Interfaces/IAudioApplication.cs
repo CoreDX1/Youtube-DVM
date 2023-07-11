@@ -4,5 +4,5 @@ namespace Tube.Application.Interfaces;
 
 public interface IAudioApplication
 {
-    public string AudioDownload(VideoRequestDto url);
+    public Task<string> Audio(AudioRequestDto url);
 }

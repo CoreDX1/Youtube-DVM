@@ -10,6 +10,9 @@ public static class InjectionExtensions
     {
         services.AddScoped<IVideoApplication, VideoApplication>();
         services.AddScoped<IAudioApplication, AudioApplication>();
+        services.AddScoped<IFormateProcessApplication, FormateProcessApplication>();
+        services.AddScoped<IAudioDownloaderApplication, AudioDownloaderApplication>();
+        services.AddScoped<IVideoDownloaderApplication, VideoDownloaderApplication>();
         return services;
     }
 }

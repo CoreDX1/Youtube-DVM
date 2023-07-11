@@ -1,24 +1,12 @@
 using Tube.Utilities.Static;
 using System.Diagnostics;
+using Tube.Application.Interfaces;
 
 namespace Tube.Application.Services
 {
-    public class FormateProcessApplication
+    public class FormateProcessApplication : IFormateProcessApplication
     {
-        public string videoArgument;
-        public string audioArgument;
-
-        public FormateProcessApplication(string url)
-        {
-            videoArgument = @$"-P {Const.pathFolder} {url}";
-            audioArgument = @$"-P {Const.pathFolder} {url} -f ba[ext=m4a]";
-        }
-
-        public bool DownloadVideo() => ExecuteProcess(videoArgument);
-
-        public bool DownloadAudio() => ExecuteProcess(audioArgument);
-
-        private bool ExecuteProcess(string arguments)
+        public async Task<string> ExecuteProcess(string arguments)
         {
             try
             {
@@ -35,14 +23,13 @@ namespace Tube.Application.Services
                 };
 
                 processYt.Start();
-                processYt.StandardOutput.ReadToEnd();
-                processYt.WaitForExit();
-                return true;
+                await processYt.WaitForExitAsync();
+                return processYt.StandardOutput.ReadToEnd();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                Console.WriteLine("Error" + ex);
+                return null!;
             }
         }
     }

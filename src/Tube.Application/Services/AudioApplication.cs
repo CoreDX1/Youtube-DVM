@@ -5,9 +5,19 @@ namespace Tube.Application.Services;
 
 public class AudioApplication : IAudioApplication
 {
-    public string AudioDownload(VideoRequestDto url)
+    private readonly IAudioDownloaderApplication _app;
+
+    public AudioApplication(IAudioDownloaderApplication app)
     {
-        var audio = new FormateProcessApplication(url.URL).DownloadAudio();
-        return audio ? "Downloaded" : "Error";
+        _app = app;
+    }
+
+    public async Task<string> Audio(AudioRequestDto audio)
+    {
+        var result = await _app.AudioDownload(audio.URL);
+        if (result is null)
+            return "Error";
+
+        return "Downloaded";
     }
 }

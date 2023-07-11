@@ -16,10 +16,11 @@ namespace src.Tube.Api.Controllers
         }
 
         [HttpPost]
-        [Route("Audio")]
-        public string DownloadAudio([FromBody] VideoRequestDto video)
+        [Route("Download")]
+        public async Task<IActionResult> DownloadAudio([FromBody] AudioRequestDto video)
         {
-            return _app.AudioDownload(video);
+            var response = await _app.Audio(video);
+            return Ok(response);
         }
     }
 }
