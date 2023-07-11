@@ -20,4 +20,14 @@ public class AudioApplication : IAudioApplication
 
         return "Downloaded";
     }
+
+    public async Task<string> AudioPlayslistDownload(AudioRequestDto audio)
+    {
+        var result = await _app.AudioPlayslistDownload(audio.URL);
+        if (result is null)
+        {
+            return "Error";
+        }
+        return "Downloaded";
+    }
 }

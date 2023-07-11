@@ -6,4 +6,6 @@ public static class Const
         @"C:\Users\Christian\Desktop\Project\Youtube-Download\Downloads";
     public const string pathYt =
         @"C:\Users\Christian\Desktop\Project\Youtube-Download\Codec\YT-DLP\yt-dlp.exe";
+    public const string pathFfmpeg =
+        @"C:\Users\Christian\Desktop\Project\Youtube-Download\Codec\YT-DLP\ffmpeg.exe";
 }

@@ -22,5 +22,13 @@ namespace src.Tube.Api.Controllers
             var response = await _app.Audio(audio);
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("Playslist")]
+        public async Task<IActionResult> DownloadPlayslist([FromBody] AudioRequestDto audio)
+        {
+            var response = await _app.AudioPlayslistDownload(audio);
+            return Ok(response);
+        }
     }
 }
