@@ -23,8 +23,9 @@ namespace Tube.Application.Services
                 };
 
                 processYt.Start();
+                var output = processYt.StandardOutput.ReadToEnd();
                 await processYt.WaitForExitAsync();
-                return processYt.StandardOutput.ReadToEnd();
+                return output;
             }
             catch (Exception ex)
             {

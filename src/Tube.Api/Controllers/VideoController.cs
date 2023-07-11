@@ -17,7 +17,7 @@ namespace src.Tube.Api.Controllers
 
         [HttpPost]
         [Route("Download")]
-        public async Task<IActionResult> Get([FromBody] VideoRequestDto video)
+        public async Task<IActionResult> DownloadVideo([FromBody] VideoRequestDto video)
         {
             var response = await _app.Video(video);
             return Ok(response);
