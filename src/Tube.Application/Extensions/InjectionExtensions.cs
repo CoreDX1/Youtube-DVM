@@ -9,6 +9,7 @@ public static class InjectionExtensions
     public static IServiceCollection AddInjectionApplication(this IServiceCollection services)
     {
         services.AddScoped<IVideoApplication, VideoApplication>();
+        services.AddScoped<IAudioApplication, AudioApplication>();
         return services;
     }
 }
