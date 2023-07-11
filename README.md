@@ -11,9 +11,9 @@
   <h3 align="center">_Dlp</h3>
 
   <p align="center">
-    Api for dowload Content from Youtube
+    Api for downloading content from Youtube
     <br />
-    <a href="#aspnet-core">Imagen Aspnet-Core</a>
+    <a href="#imagen">ASP.NET Core Imagen</a>
   </p>
 </div>
 
