@@ -25,9 +25,7 @@ public class AudioApplication : IAudioApplication
     {
         var result = await _app.AudioPlayslistDownload(audio.URL);
         if (result is null)
-        {
             return "Error";
-        }
         return "Downloaded";
     }
 }
