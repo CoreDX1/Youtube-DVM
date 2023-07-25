@@ -14,7 +14,8 @@ public class VideoApplication : IVideoApplication
 
     public async Task<string> Video(VideoRequestDto video)
     {
-        var result = await _app.VideoDownload(video.URL);
+        var ytDl = new YoutubeDL();
+        var result = await ytDl.RunVideoDownload(video.URL);
         if (result is null)
             return "Error";
 
